@@ -1,7 +1,11 @@
 import math
 from decimal import Decimal,getcontext
 
-getcontext().prec = 5
+def compaire(v1, v2):
+	for i in range(len(v1)):
+		if(abs(v1[i]-v2[i])>10**(-4)):
+			return True
+	return False
 
 def innerproduct(vectorA,vectorB):
 	tempv = [i*j for i,j in zip(vectorA,vectorB)]
@@ -13,7 +17,9 @@ def normalize(input_vector):
 
 
 if __name__ == '__main__':
-	lines = [line.strip() for line in open("input2_tested_work", 'r')]
+	# lines = [line.strip() for line in open("input2_tested_work", 'r')]
+	# lines = [line.strip() for line in open("input2_floating_point_problem", 'r')]
+	lines = [line.strip() for line in open("input4_floating_point_problem", 'r')]
 	k = int(lines[0])
 	n = int(lines[1])
 	vectorls = []
@@ -41,7 +47,7 @@ if __name__ == '__main__':
 		vector2 = [round(x - y,6) for x, y in zip(vector, sumonbasis)]
 		# print "vector2 :",vector2
 		# print "normalize(vector2) :",normalize(vector2)
-		if not vector2 == [0]*n:
+		if compaire(vector2, [0]*n):
 			m = m + 1
 			basis.append(normalize(vector2))
 		
