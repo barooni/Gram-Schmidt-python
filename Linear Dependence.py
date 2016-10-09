@@ -1,5 +1,4 @@
 import math
-from decimal import Decimal,getcontext
 
 def compaire(v1, v2):
 	for i in range(len(v1)):
@@ -30,23 +29,12 @@ if __name__ == '__main__':
 	m=0
 	basis = []
 	for vector in vectorls:
-		# print "##########################################"
-		# print "iteration on ",vector
-		# print "basis:",basis
-		# print ".........................................."
 		sumonbasis = [0]*n
 		for base in basis:
 			inp = innerproduct(vector,base)
-			# print "inp",inp
 			shadow_on_base = [x * inp for x in base]
-			# print "shadow_on_base:",shadow_on_base
 			sumonbasis = [x + y for x, y in zip(sumonbasis, shadow_on_base)]
-			# print "sumonbasis (in):",sumonbasis
-		# print ".........................................."
-		# print "sumonbasis :",sumonbasis
 		vector2 = [round(x - y,6) for x, y in zip(vector, sumonbasis)]
-		# print "vector2 :",vector2
-		# print "normalize(vector2) :",normalize(vector2)
 		if compaire(vector2, [0]*n):
 			m = m + 1
 			basis.append(normalize(vector2))
